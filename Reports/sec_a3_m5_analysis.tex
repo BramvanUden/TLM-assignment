@@ -1,0 +1,37 @@
+
+For the second part (M5, A3), the assignment is about: \textit{"The drivers have raised concerns about excessively long working hours. To address this, you are tasked with introducing constraints to the existing model that ensure drivers’ working hours are kept within acceptable limits." }
+
+\vspace{0.5cm}
+\subsection{Model 5: Workload Limit Integration}
+To construct model 5, model 2 where trucks can return to any depot, is adapted. To do so, the following constraints are incorporated:\\
+
+\textbf{Maximum Working Hours} \textit{A driver’s working hours per day must not exceed $w_{max}$ hours. Consider three scenarios for $w_{max} \in \{ 5, 6, 7 \}.$} \\
+For this restriction the maximum working ours of each truck are defined as $Wmax_{k} \in \{5, 6, 7\}$. This means that truck $k=1$ has a maximum of $6$ working hours. Implementing this into a formula results in the restriction of:
+
+\begin{equation} 
+\sum_{i\in P} \sum_{j \in P} X_{ijk} * t_{ij} \leq Wmax_{k}    \qquad   \forall k \in V
+\label{F m5 maximum working hours}
+\end{equation}
+
+\textbf{Customer Rejection} \textit{No longer all customers need to be served, i.e., the company can select which customers to serve based on profit}. This means that restriction \ref{F M1 Arriving at Customerrestriction} should be changed. Instead of restricting to visit every customer (restriction equals $1$), it is not neccesary anymore (restriction equal $\leq 1$). This results in the the changed restriction to:
+
+\begin{equation} 
+\sum_{k\in V}\sum_{i\in N \cup O} X_{ijk} \leq 1 \qquad   \forall j\in N \cup O
+\label{F m5 Arriving at Customer restriction}
+\end{equation}
+
+However 'loosening' this restriction can also cause the situation that the drop-off location is visited without the furniture. Where this situation is already implicit in restriction \ref{F M1 Pick-up before dropp-off}, the situation that that furniture is picked up but not delivered is not incorporated. Therefore the following restriction is added:
+
+\begin{equation} 
+\sum_{i\in N \cup O} X_{ijk} = \sum_{i\in N \cup O} X_{i,j+n-m,k}          \qquad   \forall j\in N, \forall k \in V
+\label{F m5 pick-up, delivery}
+\end{equation}
+
+
+\vspace{0.5cm}
+\subsection{Analysis 3: Workload Strategy Analysis}
+The provided assignment for analysis 3 is: \textit{"Examine how imposing maximum working hours affects the overall operational cost and the structure of solutions."}
+
+\newpage
+
+

@@ -1,0 +1,52 @@
+For the second part (M3, M4, A2), the assignment is about: \textit{"The company executive board wants to know the difference between finishing all pickup-and-delivery tasks as soon as possible and improving service quality by arriving as early as possible at each customer location. The following models aim to compare the delivery system performance for these cases." }
+
+\vspace{0.5cm}
+\subsection{Model 3: Minimizing Completion Time}
+The provided assignment for model 3 is: \textit{"Modify the objective function of M1 to minimize the time the last truck returns to its depot, referred to as the final makespan."}
+
+
+\begin{equation} 
+Min Max (Return)
+\label{M3 Objective function}
+\end{equation}
+
+\textit{??moet Xijk erin blijven of weg???\\ \\}
+
+Here $Return$ is defined as the arrivaltime of a truck at a depot. By minimizing this number, the final makespan is minimalized. $Return$ is defined as:
+
+\begin{equation} 
+Return = \sum_{j \in M} \sum_{i \in N \cup O} a_{jk} * X_{ijk} \qquad \forall k \in V
+\label{F M3 Return equation}
+\end{equation}
+
+
+This change in the objective function does not result in a change in the restrictions. Only the definition of $Return$ is added. 
+
+
+
+\vspace{0.5cm}
+\subsection{Model 4: Reducing Customer Latency}
+The provided assignment for model 4 is: \textit{"Adjust the objective function of M1 to minimize the total arrival time at each customer pick-up and delivery locations, referred to as the total latency."} From here the following objective function is constructed:
+
+\begin{equation} 
+Min \sum_{k \in V} \sum_{i \in N \cup O} a_{ik}
+\label{M4 Objective function}
+\end{equation}
+
+In the objective function, the total arrival time at customers is minimized. There are no changes in restriction compared to model 1
+
+
+\vspace{0.5cm}
+\subsection{Analysis 2: Makespan and Quality Analysis}
+The provided assignment for analysis 2 is: \textit{"Compare models M3 and M4 in terms of cost and other KPIs. Next, compare the solution times of these formulations as well as their structure with models M1 and M2."} \\
+
+The KPI of total costs is defined as:
+
+Other KPIs:
+- waiting time?
+- customer latency
+- completion time
+
+\newpage
+
+

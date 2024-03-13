@@ -1,0 +1,45 @@
+"The company is exploring strategies to enhance its operational efficiency and environmental responsibility."
+
+\vspace{0.5cm}
+\subsection{Model 6: Emissions-Profit Balance}
+The provided assignment for analysis 2 is: \textit{"Based on the M5 model, create a multi-objective strategy balancing CO₂ emissions and profits. Analyze three different weight configuration possibilities:}\\
+
+\qquad - 0.5 and 0.5; and
+
+\qquad - 0.25 and 0.75; and 
+
+\qquad - 0.75 and 0.25." 
+
+\vspace{0.5cm}
+To set up the multi-objective strategy, the weighted scoring method (WSM) is used. Given different objectives with their weights, a multiobjective problem is transformed into a single objective problem for the m objectives as follows:
+
+\begin{equation} 
+\sum_{i} w_i f_i(x)
+\label{F m6 wsm example}
+\end{equation}
+
+The CO and Profit are based on the description of WSM theory, and the objective function from model 1 (formula \ref{M1 objective function}). They are defined as:
+
+\begin{equation} 
+Profit: \qquad Max \sum_{k\in V}    \sum_{i\in P}  \sum_{j\in P} X_{ijk} (Rev * w_i - PT * T_{ij}) 
+\label{M6 Profit}
+\end{equation}
+
+\begin{equation} 
+CO: \qquad Min \sum_{k\in V}    \sum_{i\in P}  \sum_{j\in P} X_{ijk} (PCO * CO * w_i *d_{ij})
+\label{M6 CO}
+\end{equation}
+
+Where the Profit function is a maximization, the CO is a minimization. Therefore the weight for Profit ($w_p$) is positive and the weight for CO ($w_{CO}$) is negative.
+This results is the summed formula:
+
+\begin{equation} 
+Max \ \ w_p \ * \ (\sum_{k\in V}    \sum_{i\in P}  \sum_{j\in P} X_{ijk} (Rev * w_i - PT * T_{ij}) ) \ \ - \ \ w_{CO} \ * \ (\sum_{k\in V}    \sum_{i\in P}  \sum_{j\in P} X_{ijk} (PCO * CO * w_i *d_{ij}))
+\label{M6 objective function}
+\end{equation}
+
+\vspace{0.5cm}
+\subsection{Model 6: Sustainable Operations Analysis}
+Provide an analysis of the trade-off outcome concerning the solutions, including the utopia points.
+
+\newpage

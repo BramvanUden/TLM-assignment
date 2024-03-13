@@ -1,0 +1,66 @@
+\documentclass[11pt]{article}
+
+\include{packages.tex}
+
+\begin{document}
+
+\input{Reports/0-frontpage.tex}
+
+\tableofcontents
+\newpage
+
+% 1 - H1: Problem description
+\section{Problem description} \label{Inleiding}
+\subfile{Reports/Problem Description}
+
+% 2 - A1-M1-M2
+\section{Model 1 \& 2 and Analyses 1} \label{Inleiding}
+\subfile{Reports/sec_a1_m1-m2_analysis} 
+
+% 3 - A2-M3-M4
+\section{Model 3 \& 4 and Analyses 2} \label{Inleiding}
+\subfile{Reports/sec_a2_m3-m4_analysis} 
+
+% 4 - A3-M5
+\section{Model 5 and Analyses 3} \label{Inleiding}
+\subfile{Reports/sec_a3_m5_analysis}
+
+% 4 - A4-M6
+\section{Model 6 and Analyses 4} \label{Inleiding}
+\subfile{Reports/sec_a4_m6_analysis}
+
+% 4 - A5-comparative
+\section{Comparative model analysis} \label{Inleiding}
+\subfile{Reports/sec_a5_comparative_model_analysis}
+
+
+% Literatuur
+    %\section{Literatuur}
+    %\printbibliography[heading=none]
+    %\newpage
+
+% Bijlage
+    %\section{Bijlage}
+    %\subfile{Hoofdstukken/Bijlage.tex}
+
+\end{document}
+
+% !! Extra info
+% Figuren invoegen:
+\begin{figure}[H]
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{Figures/Membrane_edited.png}
+    \caption{Example of a defect detected by the USB microscope (distorted image)}
+    \label{Im:USBmicroscopeView}
+\end{center}   
+\end{figure}
+
+% Voor tabellen maken: zoek op latex table generator
+% Refereren naar een bron: \cite{}
+% Refereren naar een hoofdstuk/subsectie/tabel/figuur: \ref{}
+% Enter: \\
+% Nieuwe alinea: \par OF dubbel enter in je script
+% Vergelijking invoegen \begin{equation} ... \end{equation}
+% Getallen of variabelen weergeven: $...$
+% Quote of bv onderzoeksvraag weergeven: \begin{quote} ... \end{quote}
+

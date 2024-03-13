@@ -1,0 +1,43 @@
+Provided in the assignment is the following description of the problem:
+\vspace{0.5cm}
+
+\textit{You are the logistics manager of a second-hand furniture distribution company in Overijssel. Your company collects furniture in the region daily and then sells it to different customers. As you are new in the business, you need to outsource the pickup-and-delivery process and rent a fleet of trucks to perform the deliveries. Hence, you rent a fleet of 3 trucks departing from 3 different depot locations. Truck transportation costs are 20 €/hour of driving, which include fuel, driver salary, and remaining costs. A truck’s CO₂ emission is 200 grams/km. For each emitted kg of CO₂, the company pays €0.05. Trucks should depart from their depot locations daily, collect the furniture, and execute deliveries to the corresponding customers. The selling price of the furniture is 50 €/kg. All distances are Euclidean, and the trucks drive at 25/km per hour. Driving time is obtained by dividing the traveled distance by the speed. The driving time is rounded to 2 decimal places. In addition, the customers at the pick-up and drop-off locations have specific requirements: the delivery service has to be provided during a pre-defined time window. Trucks should serve the customers after the starting time of the time window and before the ending time of the time window. We disregard the time to load and unload. The customer freights cannot be divided, and each customer can only be visited once. Furthermore, trucks have a maximum capacity of 200 kg. They cannot return to the depot for a temporary drop-off (i.e., they must complete all their pick-ups and deliveries before returning to the depot at the end of their route). As the logistic manager of the company, you are required to provide a delivery schedule that maximizes the profit of the pick-up and delivery system.}
+\vspace{0.5cm}
+
+Multiple forms of optimization models can be constructed, each with different constraints and objective functions. To formulate these models, the following sets and parameters are described based on the assignment above:
+\vspace{0.1cm}
+
+\textbf{Sets and Indices}
+\begin{itemize}
+  \item $P$: Set of all nodes, where $P \in \{0, ..., p\}$.
+  \item $M$: Set of depots, where $M \in \{p, ..., m\}$, $M \in P$.
+  \item $N$: Set of Pick-up locations, where $N \in \{m+1, ..., n\}$, $N \in P$.
+  \item $O$: Set of Drop-off locations, where $O \in \{n+1, ..., p\}$, $O \in P$.
+  \item $V$: Set of Trucks available, where $V \in \{0,..., v\}$.
+  \item $i,j$: Node indices, where $i,j \in N \cup O$.
+  \item $h$: Customer index, where $h \in N \cup O$.
+  \item $k$: Vehicle index, where $k \in V$.
+\end{itemize}
+\vspace{0.1cm}
+
+\textbf{Parameters}
+\begin{itemize}
+  \item $D_{ij}$: Distance from Node $i$ to $j$, where $i,j \in N \cup O$.
+  \item $T_{ij}$: Time from Node $i$ to $j$, where $i,j \in N \cup O$. 
+  \item $b_{i}$: Start Window of node i, where $i \in N \cup O$. 
+  \item $l_{i}$: End Window of node i, where $i \in N \cup O$. 
+  \item $w_{i}$: Weight of furniture at node i , where $i \in N \cup O$. 
+  \item $CO$: The CO emmissions, 0.2 kg/km.
+  \item $PCO$: The price of CO emissions, 0.05 euro/kg.
+  \item $PT$: The price of truck transportation, 20 euro/h.
+  \item $Sp$: The speed of trucks, 25km/h.
+  \item $W_{max}$: Capacity of Trucks, 200kg.
+  \item $Wh_{max}$: Maximum Working Hours.
+  \item $Rev$: Revenue of Selling an Order, 50 euro/kg.
+
+\end{itemize}
+
+
+
+
+\newpage

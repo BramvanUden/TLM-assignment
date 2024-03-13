@@ -1,0 +1,139 @@
+After the sets, indices and parameters are described, models 1 and 2 are constructed in sections 2.1 and 2.2. For this model, the decision variables, objective function, and restrictions are formulated. After the models are constructed, they are analyzed and compared in section 2.3 
+
+\vspace{0.5cm}
+\subsection{Model 1: Origin Depot Return}
+The provided assignment for model 1 is: \textit{"Develop a mathematical formulation for scenarios where all trucks must return to their starting depot."}
+
+!!!!!describe here what the model should do, how the travel time is calculated, why the restrictions are as they are, explain the objective more\\
+
+\vspace{0cm}
+\textbf{Decision variables}
+\begin{itemize}
+  \item $X_{ijk}$: Traveling from i to j with truck k, where $i,j \in P, k \in V$.
+  \item $a_{ik}$: Arrival time at node i with truck k, where $i \in N \cup O, k \in V$.
+\end{itemize}
+
+\vspace{0.5cm}
+\textbf{Objective function} \\
+Based on the description described in the problem description, the objective function can be formulated as:
+
+\begin{equation} 
+Max \sum_{k\in V}    \sum_{i\in P}  \sum_{j\in P} X_{ijk} (Rev * w_i - PT * T_{ij} - PCO * CO * w_i *d_{ij}) 
+\label{M1 objective function}
+\end{equation}
+
+
+\vspace{0.5cm}
+\textbf{Restrictions}\\
+The balance restriction is shown in formula $\ref{M1 Balance restriction}$. When a truck enters a node, it has to leave the node as well.
+
+\begin{equation} 
+\sum_{\textbf{i\in N \cup O}} X_{ihk} - \sum_{\textbf{j\in N \cup O}} X_{hjk} = 0  \qquad \forall h \in N \cup O,\forall k\in V
+\label{F M1 Objective function}
+\end{equation}
+\textbf{1 niet in j???} \\
+
+Arriving at Customer once
+\begin{equation} 
+\sum_{k\in V}\sum_{i\in N \cup O} X_{ijk} = 1 \qquad   \forall j\in N \cup O
+\label{F M1 Arriving at Customerrestriction}
+\end{equation}
+
+Capacity
+\begin{equation} 
+\sum_{j \in N} \sum_{i \in P} X_{ijk} \cdot w_j - \sum_{i \in P} \sum_{j \in O} X_{ijk} \cdot w_j \leq W_{\text{max}} \quad \forall k \in V.
+\label{F M1 Capacity restriction}
+\end{equation}
+
+Start Depot
+\begin{equation} 
+\sum_{i \in M} \sum_{j\in N \cup O} X_{ijk} = 1    \qquad  \forall k \in V
+\label{F M1 Start Depot restriction}
+\end{equation}
+
+Finish Depot
+\begin{equation} 
+\sum_{j \in M} \sum_{i\in N \cup O} X_{ijk} = 1    \qquad  \forall k \in V
+\label{F M1 Finish Depot restriction}
+\end{equation}
+
+Only one truck departing from a depot
+\begin{equation} 
+\sum_{j \in N \cup O} \sum_{k\in V} X_{ijk} \leq 1    \qquad  \forall j \in M
+\label{F M1 Only one truck departing from a depot}
+\end{equation}
+
+Same deport starting \& ending
+\begin{equation} 
+\sum_{i\in N \cup O} X_{ijk} = \sum_{i\in N \cup O} X_{jik}    \qquad  \forall j \in M, \forall k \in V
+\label{F M1 Same deport starting & ending}
+\end{equation}
+
+Maximum Timewindow 
+\begin{equation} 
+b_i   \leq  a_{ik}   \qquad  \forall i \in P, k \in V 
+\label{F M1 Maximum Timewindow1}
+\end{equation}
+
+\begin{equation} 
+a_{ik} \leq   l_i             \qquad  \forall i \in P, k \in V
+\label{F M1 Maximum Timewindow2}
+\end{equation}
+
+Arrival time calculation
+\begin{equation} 
+X_{ijk}(a_{ik} + T_{ij} - a_{jk})  \leq 0  \qquad  \forall i,j \in P, \forall k \in V
+\label{F M1 Arrival time calculation}
+\end{equation}
+
+Visit the Pick-up ($\in N$)  before dropoff ($\in O$) \\
+\begin{equation} 
+a_{ik} \leq a_{i+n-m,k}   \qquad  \forall i\in N, \forall k \in V
+\label{F M1 Pick-up before dropp-off}
+\end{equation}
+
+Calculate Traveltime
+\begin{equation} 
+T_{ij} = D_{ij}/Sp    \qquad  \forall i,j \in P
+\label{F M1 Calculate Traveltime}
+\end{equation}
+
+All variables are non-negative
+\begin{equation} 
+X_{ijk}, a_{ik}    \qquad  \forall i,j \in P, \forall k \in V
+\label{F M1 All variables are non-negative}
+\end{equation}
+
+
+\vspace{0.5cm}
+
+Looking at the formulas above, the \ref{F M1 Arrival time calculation}th formula is not lineair. To linearize this a big number is needed, called BigM. It is defined as a number that higher than the highest possible number within the model. In this case we take a look at the largest possible value for $a_{jk}$ is. The latest end-time at a drop-off location is 8 hours. if we choose  BigM as 1000, it will always be higher. Accordingly, formula \ref{F M1 Arrival time calculation lin.} shows the linearized version of formula \ref{F M1 Arrival time calculation}.
+
+
+\begin{equation} 
+a_{ik} + T_{ij} - a_{jk}  \leq (1-X_{ijk})*BigM  \qquad  \forall i,j \in P, \forall k \in V
+\label{F M1 Arrival time calculation lin.}
+\end{equation}
+
+
+
+
+\newpage
+\subsection{Model 2: Origin Depot Return}
+The provided assignment for model 2 is: \textit{"Create a mathematical formulation for cases allowing trucks to return to any depot."} They start, similarly to model 1, with a maximum of 1 truck per depot, but can return to a depot with more than 1 truck per depot. \\
+\\
+Comparing this change to model 1, the decision variables and objective function remain the same.\textbf{ However two constraints will be changed.}\\
+\\
+The first change is to remove restriction \ref{F M1 Same deport starting & ending}, because for model 2 the trucks don't have to enter and leave the same depot. Removing this constraint means that restriction\ref{F M1 Only one truck departing from a depot} now only holds for the starting depots. Now trucks have to leave from their own deport and can return to any depot.
+
+
+
+
+\vspace{1cm}
+\subsection{Analysis 1: Return Strategy Analysis}
+The provided assignment for analysis 1 is: \textit{"Analyze how the route return strategies impact the solution’s solving time and structure of M1 and M2, including factors like the number of vehicles used, kilometers covered by each vehicle, and total weight each truck carries."}
+
+
+
+
+\newpage
